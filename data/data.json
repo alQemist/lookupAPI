@@ -1,0 +1,19 @@
+{
+  "TX": {
+    "url": {
+      "pt": "https://ptot.texas.gov/page/pt-license-search",
+      "ot": "https://ptot.texas.gov/page/ot-license-search"
+    },
+    "input_mapping": {
+      "license_number": "searchForm[license]",
+      "type": "searchForm[therapist]"
+    },
+    "input_constants": {
+      "search-type":"license",
+      "task":"searchLicenses",
+      "search-entity": "therapist"
+    },
+    "xpath_element_id": "ptot-search-form-errors",
+    "pass_fail": "null"
+  }
+}

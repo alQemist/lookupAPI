@@ -1,7 +1,6 @@
 <?php
 
 include_once("stdObject.php");
-include_once ("simple_html_dom.php");
 
 $lookupdata = file_get_contents("data/data.json");
 $jsonObj = json_decode($lookupdata, true);

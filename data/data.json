@@ -13,7 +13,7 @@
       "task":"searchLicenses",
       "search-entity": "therapist"
     },
-    "xpath_element_id": "ptot-search-form-errors",
+    "$search_path": "//*[@id='results-block']",
     "pass_fail": "null"
   }
 }

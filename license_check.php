@@ -1,9 +1,13 @@
 <?php
 
 include_once("stdObject.php");
+include_once ("simple_html_dom.php");
 
 $lookupdata = file_get_contents("data/data.json");
 $jsonObj = json_decode($lookupdata, true);
+
+$html = new simple_html_dom();
+
 
 foreach ($_POST as $key => $value) {
     ${$key} = $value;
@@ -21,6 +25,7 @@ $state = strtoupper($state);
 $url = $jsonObj[$state]['url'][$type];
 $input_mapping = $jsonObj[$state]['input_mapping'];
 $input_constants = $jsonObj[$state]['input_constants'];
+$search_path = $jsonObj = $jsonObj[$state]['search_path'];
 $curl_connection = curl_init();
 
 foreach ($input_mapping as $k => $v) {
@@ -34,13 +39,20 @@ curl_setopt_array($curl_connection, prepareCurlOptions($url, $post_data, $header
 
 $response = curl_exec($curl_connection);
 
-//show information regarding the request
-print_r(curl_getinfo($curl_connection));
-//echo curl_errno($curl_connection) . '-' .  curl_error($curl_connection);
+$dom = new DOMDocument();
 
-echo $response;
+$dom->loadHTML($response);
 
-//close the connection
+$xpath = new DOMXpath($dom);
+
+$elements = $xpath->query("//*[@id='results-block']");
+
+if (count($elements)) {
+    echo 1;
+}else{
+    echo 0;
+}
+
 curl_close($curl_connection);
 
 

@@ -5,9 +5,6 @@ include_once("stdObject.php");
 $lookupdata = file_get_contents("data/data.json");
 $jsonObj = json_decode($lookupdata, true);
 
-$html = new simple_html_dom();
-
-
 foreach ($_POST as $key => $value) {
     ${$key} = $value;
 }
